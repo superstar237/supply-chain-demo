@@ -16,7 +16,7 @@
 
 const namespace = "org.legacy.network";
 
-const PRODUCT_STATES = ['INITIALSTATE', 'MANUFACTURED', 'DISTRIBUTED', 'VENDORED', 'INFIELD'];
+const PRODUCT_STATES = ['OriginState', 'Manufacturer', 'Distribution', 'Field', 'Agency'];
 
 /**
  * Init test data
@@ -74,16 +74,19 @@ async function InitTestDataFunction(initTestData) {
       {
         'productId': 'GE1',
         'modelName': 'MO-GE-5215',
+        'serialNo': 'SN-GE-56163415612',
         'amount': 5
       },
       {
         'productId': 'GE2',
         'modelName': 'MO-GE-1612',
+        'serialNo': 'SN-GE-12612361351',
         'amount': 10
       },
       {
         'productId': 'GE3',
         'modelName': 'MO-GE-7819',
+        'serialNo': 'SN-GE-72382423723',
         'amount': 1
       },
     ];
@@ -92,6 +95,7 @@ async function InitTestDataFunction(initTestData) {
     generators = generators.map(function (generator) {
       let newGenerator = factory.newResource(namespace, 'Generators', generator.productId);
       newGenerator.modelName = generator.modelName;
+      newGenerator.serialNo = generator.serialNo;
       newGenerator.amount = generator.amount;
       return newGenerator;
     });

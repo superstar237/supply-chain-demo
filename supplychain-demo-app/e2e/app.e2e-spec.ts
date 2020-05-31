@@ -63,10 +63,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('Generators table should have 5 columns',() => {
+    it('Generators table should have 6 columns',() => {
       page.navigateTo('/Generators');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(5); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
       });
     });
   
@@ -81,10 +81,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('Computers table should have 5 columns',() => {
+    it('Computers table should have 6 columns',() => {
       page.navigateTo('/Computers');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(5); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
       });
     });
   
@@ -99,10 +99,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('AirplaneWings table should have 5 columns',() => {
+    it('AirplaneWings table should have 6 columns',() => {
       page.navigateTo('/AirplaneWings');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(5); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
       });
     });
   
@@ -117,10 +117,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('MaritimeEquiqments table should have 5 columns',() => {
+    it('MaritimeEquiqments table should have 6 columns',() => {
       page.navigateTo('/MaritimeEquiqments');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(5); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
       });
     });
   

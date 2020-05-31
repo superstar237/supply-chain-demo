@@ -15,11 +15,11 @@
 namespace org.legacy.network
 
 enum ProductState{
-  o INITIALSTATE
-  o MANUFACTURED
-  o DISTRIBUTED
-  o VENDORED
-  o INFIELD
+  o OriginState
+  o Manufacturer
+  o Distribution
+  o Field
+  o Agency
 }
 
 participant Manufacturer identified by manufacturerId {
@@ -46,8 +46,9 @@ participant SampleParticipant identified by participantId {
 abstract asset Product identified by productId {
   o String productId
   o String modelName
+  o String serialNo
   o Integer amount
-  o ProductState atState default="INITIALSTATE"
+  o ProductState atState default="OriginState"
 }
 
 asset Generators extends Product {
