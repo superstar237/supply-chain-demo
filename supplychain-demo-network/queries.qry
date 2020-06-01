@@ -29,3 +29,9 @@ query selectMaritimeEquiqmentsByState {
   	SELECT org.legacy.network.MaritimeEquiqments
   		WHERE (atState == _$state)
 }
+
+query selectProcessed {
+  description: "Select all processed transactions"
+  statement:
+  	SELECT org.legacy.network.Process
+}

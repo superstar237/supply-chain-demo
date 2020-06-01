@@ -11,6 +11,8 @@
       eventId: string;
       timestamp: Date;
    }
+   export abstract class Query {
+   }
    export abstract class Registry extends Asset {
       registryId: string;
       name: string;

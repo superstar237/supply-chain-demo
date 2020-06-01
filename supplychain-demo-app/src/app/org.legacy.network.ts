@@ -1,6 +1,7 @@
 import {Asset} from './org.hyperledger.composer.system';
 import {Participant} from './org.hyperledger.composer.system';
 import {Transaction} from './org.hyperledger.composer.system';
+import {Query} from './org.hyperledger.composer.system';
 import {Event} from './org.hyperledger.composer.system';
 // export namespace org.legacy.network{
    export enum ProductState {
@@ -64,5 +65,7 @@ import {Event} from './org.hyperledger.composer.system';
       asset: SampleAsset;
       oldValue: string;
       newValue: string;
+   }
+   export class GeneratorsByState extends Query {
    }
 // }

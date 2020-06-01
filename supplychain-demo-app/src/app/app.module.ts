@@ -37,6 +37,8 @@ import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 import { SampleTransactionComponent } from './SampleTransaction/SampleTransaction.component';
 
+import { GeneratorsByStateComponent } from './GeneratorsByState/GeneratorsByState.component';
+
   @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +55,8 @@ import { SampleTransactionComponent } from './SampleTransaction/SampleTransactio
     InitTestDataComponent,
     ClearDataComponent,
     ProcessComponent,
-    SampleTransactionComponent
+    SampleTransactionComponent,
+    GeneratorsByStateComponent
   ],
   imports: [
     BrowserModule,

@@ -87,4 +87,12 @@ export class DataService<Type> {
         return res.json();
     }
 
+    public getQuery(state: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectGeneratorsByState?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
 }
