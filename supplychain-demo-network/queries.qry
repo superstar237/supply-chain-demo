@@ -1,0 +1,31 @@
+/**
+ * New query file
+ */
+
+query selectGeneratorsByState {
+  description: "Select all genetrators by state"
+  statement:
+  	SELECT org.legacy.network.Generators
+  		WHERE (atState == _$state)
+}
+
+query selectComputersByState {
+  description: "Select all computers by state"
+  statement:
+  	SELECT org.legacy.network.Computers
+  		WHERE (atState == _$state)
+}
+
+query selectAirplaneWingsByState {
+  description: "Select all airplane wings by state"
+  statement:
+  	SELECT org.legacy.network.AirplaneWings
+  		WHERE (atState == _$state)
+}
+
+query selectMaritimeEquiqmentsByState {
+  description: "Select all maritime equiqments by state"
+  statement:
+  	SELECT org.legacy.network.MaritimeEquiqments
+  		WHERE (atState == _$state)
+}

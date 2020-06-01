@@ -34,6 +34,7 @@ export class AirplaneWingsComponent implements OnInit {
 
   productId = new FormControl('', Validators.required);
   modelName = new FormControl('', Validators.required);
+  serialNo = new FormControl('', Validators.required);
   amount = new FormControl('', Validators.required);
   atState = new FormControl('', Validators.required);
 
@@ -41,6 +42,7 @@ export class AirplaneWingsComponent implements OnInit {
     this.myForm = fb.group({
       productId: this.productId,
       modelName: this.modelName,
+      serialNo: this.serialNo,
       amount: this.amount,
       atState: this.atState
     });
@@ -102,6 +104,7 @@ export class AirplaneWingsComponent implements OnInit {
       $class: 'org.legacy.network.AirplaneWings',
       'productId': this.productId.value,
       'modelName': this.modelName.value,
+      'serialNo': this.serialNo.value,
       'amount': this.amount.value,
       'atState': this.atState.value
     };
@@ -109,6 +112,7 @@ export class AirplaneWingsComponent implements OnInit {
     this.myForm.setValue({
       'productId': null,
       'modelName': null,
+      'serialNo': null,
       'amount': null,
       'atState': null
     });
@@ -120,6 +124,7 @@ export class AirplaneWingsComponent implements OnInit {
       this.myForm.setValue({
         'productId': null,
         'modelName': null,
+        'serialNo': null,
         'amount': null,
         'atState': null
       });
@@ -139,6 +144,7 @@ export class AirplaneWingsComponent implements OnInit {
     this.asset = {
       $class: 'org.legacy.network.AirplaneWings',
       'modelName': this.modelName.value,
+      'serialNo': this.serialNo.value,
       'amount': this.amount.value,
       'atState': this.atState.value
     };
@@ -193,6 +199,7 @@ export class AirplaneWingsComponent implements OnInit {
       const formObject = {
         'productId': null,
         'modelName': null,
+        'serialNo': null,
         'amount': null,
         'atState': null
       };
@@ -207,6 +214,12 @@ export class AirplaneWingsComponent implements OnInit {
         formObject.modelName = result.modelName;
       } else {
         formObject.modelName = null;
+      }
+
+      if (result.serialNo) {
+        formObject.serialNo = result.serialNo;
+      } else {
+        formObject.serialNo = null;
       }
 
       if (result.amount) {
@@ -239,6 +252,7 @@ export class AirplaneWingsComponent implements OnInit {
     this.myForm.setValue({
       'productId': null,
       'modelName': null,
+      'serialNo': null,
       'amount': null,
       'atState': null
       });

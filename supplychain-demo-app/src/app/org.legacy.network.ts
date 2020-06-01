@@ -4,11 +4,11 @@ import {Transaction} from './org.hyperledger.composer.system';
 import {Event} from './org.hyperledger.composer.system';
 // export namespace org.legacy.network{
    export enum ProductState {
-      INITIALSTATE,
-      MANUFACTURED,
-      DISTRIBUTED,
-      VENDORED,
-      INFIELD,
+      OriginState,
+      Manufacturer,
+      Distribution,
+      Field,
+      Agency,
    }
    export class Manufacturer extends Participant {
       manufacturerId: string;
@@ -30,6 +30,7 @@ import {Event} from './org.hyperledger.composer.system';
    export abstract class Product extends Asset {
       productId: string;
       modelName: string;
+      serialNo: string;
       amount: number;
       atState: ProductState;
    }
