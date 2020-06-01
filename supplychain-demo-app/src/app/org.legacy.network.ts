@@ -68,4 +68,6 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class GeneratorsByState extends Query {
    }
+   export class SelectProcess extends Query {
+   }
 // }

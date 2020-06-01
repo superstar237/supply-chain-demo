@@ -15,35 +15,35 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { GeneratorsByState } from '../org.legacy.network';
+import { SelectProcess } from '../org.legacy.network';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class GeneratorsByStateService {
+export class SelectProcessService {
 
   private NAMESPACE = 'Generators';
 
-  constructor(private dataService: DataService<GeneratorsByState>) {
+  constructor(private dataService: DataService<SelectProcess>) {
   };
 
-  public getAll(): Observable<GeneratorsByState[]> {
+  public getAll(): Observable<SelectProcess[]> {
     return this.dataService.getAll(this.NAMESPACE);
   }
 
-  public getQuery(state: string): Observable<GeneratorsByState[]> {
-    return this.dataService.getGeneratorsByState(state);
+  public getQuery(name: string): Observable<SelectProcess[]> {
+    return this.dataService.getProcessed(name);
   }
 
-  public addQuery(itemToAdd: any): Observable<GeneratorsByState> {
+  public addQuery(itemToAdd: any): Observable<SelectProcess> {
     return this.dataService.add(this.NAMESPACE, itemToAdd);
   }
 
-  public updateQuery(id: any, itemToUpdate: any): Observable<GeneratorsByState> {
+  public updateQuery(id: any, itemToUpdate: any): Observable<SelectProcess> {
     return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
   }
 
-  public deleteQuery(id: any): Observable<GeneratorsByState> {
+  public deleteQuery(id: any): Observable<SelectProcess> {
     return this.dataService.delete(this.NAMESPACE, id);
   }
 

@@ -87,10 +87,18 @@ export class DataService<Type> {
         return res.json();
     }
 
-    public getQuery(state: string ): Observable<Type[]> {
+    public getGeneratorsByState(state: string ): Observable<Type[]> {
         //console.log('GetSingle ' + ns);
 
         return this.http.get(this.actionUrl + '/queries/selectGeneratorsByState?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    public getProcessed(name: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectProcessed'/*?name=' + name*/)
           .map(this.extractData)
           .catch(this.handleError);
     }

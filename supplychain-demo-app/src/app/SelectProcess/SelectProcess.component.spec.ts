@@ -21,13 +21,13 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { GeneratorsByStateComponent } from './GeneratorsByState.component';
-import { GeneratorsByStateService } from './GeneratorsByState.service';
+import { SelectProcessComponent } from './SelectProcess.component';
+import { GeneratorsByStateService } from './SelectProcess.service';
 import { Observable } from 'rxjs'
 
-describe('GeneratorsByStateComponent', () => {
-  let component: GeneratorsByStateComponent;
-  let fixture: ComponentFixture<GeneratorsByStateComponent>;
+describe('SelectProcessComponent', () => {
+  let component: SelectProcessComponent;
+  let fixture: ComponentFixture<SelectProcessComponent>;
 
   let mockGeneratorsService;
   let mockDataService
@@ -39,7 +39,7 @@ describe('GeneratorsByStateComponent', () => {
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ GeneratorsByStateComponent ],
+      declarations: [ SelectProcessComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -52,7 +52,7 @@ describe('GeneratorsByStateComponent', () => {
       ]
     });
 
-    fixture = TestBed.createComponent(GeneratorsByStateComponent);
+    fixture = TestBed.createComponent(SelectProcessComponent);
     component = fixture.componentInstance;
 
   }));
