@@ -1,0 +1,162 @@
+<!--
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+<div class="modal fade" id="addAssetModal" tabindex="-1" role="dialog" aria-labelledby="addAssetModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addAssetModalLabel">Select generators</h4>
+          <p class="modal-intro">Enter the required values below.</p>
+      </div>
+      <form [formGroup]="myForm">
+        <div class="modal-body">
+          
+
+            
+              <label for="atState">atState</label>
+              <div class="checkbox">
+                
+                  <label>
+                    <input
+                      
+                        formControlName="atState"
+                      
+                      name="atState"
+                      value="OriginState"
+                      type="radio"
+                      
+                    />
+                    OriginState
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="atState"
+                      
+                      name="atState"
+                      value="Manufacturer"
+                      type="radio"
+                      
+                    />
+                    Manufacturer
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="atState"
+                      
+                      name="atState"
+                      value="Distribution"
+                      type="radio"
+                      
+                    />
+                    Distribution
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="atState"
+                      
+                      name="atState"
+                      value="Field"
+                      type="radio"
+                      
+                    />
+                    Field
+                  </label>
+                
+                  <label>
+                    <input
+                      
+                        formControlName="atState"
+                      
+                      name="atState"
+                      value="Agency"
+                      type="radio"
+                      
+                    />
+                    Agency
+                  </label>
+                
+              </div>
+            
+          
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button (click)="getQuery(myForm);" type="submit" class="btn btn-success" data-dismiss="modal">Select</button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+	<div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+		<strong>Error:</strong> {{errorMessage}}
+	</div>
+  
+  <div class="row">
+    <div class="col-md-9">
+        <h1 class="asset-title" id='assetName'>Generators By State</h1>
+    </div>
+    <div class="col-md-3">
+      <button (click)="resetForm()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addAssetModal">
+        Select
+      </button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table table-responsive">
+        <thead class="thead">
+          <tr class="thead-cols">
+            
+                <th class="info">Asset ID</th>
+            
+                <th class="info">modelName</th>
+            
+                <th class="info">serialNo</th>
+            
+                <th class="info">amount</th>
+            
+                <th class="info">atState</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let asset of allAssets">
+
+            
+                <td class="asset-properties">{{asset.productId}}</td>
+            
+                <td class="asset-properties">{{asset.modelName}}</td>
+            
+                <td class="asset-properties">{{asset.serialNo}}</td>
+            
+                <td class="asset-properties">{{asset.amount}}</td>
+            
+                <td class="asset-properties">{{asset.atState}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@
       </div>
       <ul class="nav navbar-nav">
         <li class="dropdown active">
-            <a class="dropdown-toggle" data-toggle="dropdown">Assets</a>
+            <a class="dropdown-toggle" data-toggle="dropdown">Asset Class</a>
             <ul class="dropdown-menu scrollable-menu">
               
               <li><a [routerLink]="['/Generators']">Generators</a></li>
@@ -35,7 +35,7 @@
             </ul>
         </li>
         <li class="dropdown active">
-          <a class="dropdown-toggle" data-toggle="dropdown">Participants</a>
+          <a class="dropdown-toggle" data-toggle="dropdown">Customers</a>
           <ul class="dropdown-menu scrollable-menu">
             
             <li><a [routerLink]="['/Manufacturer']">Manufacturer</a></li>
@@ -47,21 +47,43 @@
             <li><a [routerLink]="['/SampleParticipant']">SampleParticipant</a></li>
             
           </ul>
-      </li>
-      <li class="dropdown active">
-        <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
-        <ul class="dropdown-menu scrollable-menu">
-          
-          <li><a [routerLink]="['/InitTestData']">InitTestData</a></li>
-          
-          <li><a [routerLink]="['/ClearData']">ClearData</a></li>
-          
-          <li><a [routerLink]="['/Process']">Process</a></li>
-          
-          <li><a [routerLink]="['/SampleTransaction']">SampleTransaction</a></li>
-          
-        </ul>
-    </li>
+        </li>
+        <li class="dropdown active">
+          <a class="dropdown-toggle" data-toggle="dropdown">Transactions</a>
+          <ul class="dropdown-menu scrollable-menu">
+            
+            <li><a [routerLink]="['/InitTestData']">InitTestData</a></li>
+            
+            <li><a [routerLink]="['/ClearData']">ClearData</a></li>
+            
+            <li><a [routerLink]="['/Process']">Process</a></li>
+            
+            <li><a [routerLink]="['/SampleTransaction']">SampleTransaction</a></li>
+            
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a class="dropdown-toggle" data-toggle="dropdown">Queries</a>
+          <ul class="dropdown-menu scrollable-menu">
+            
+            <li><a [routerLink]="['/queries/selectGeneratorsByState']">GeneratorsByState</a></li>
+            
+            <li><a [routerLink]="['/queries/selectComputersByState']">ComputersByState</a></li>
+            
+            <li><a [routerLink]="['/queries/selectAirplaneWingsByState']">AirplaneWingsByState</a></li>
+            
+            <li><a [routerLink]="['/queries/selectMaritimeEquiqmentsByState']">MaritimeEquiqmentsByState</a></li>
+            
+          </ul>
+        </li>
+        <li class="dropdown active">
+          <a class="dropdown-toggle" data-toggle="dropdown">Trace</a>
+          <ul class="dropdown-menu scrollable-menu">
+            
+            <li><a [routerLink]="['/queries/selectProcessed']">Processed</a></li>
+
+          </ul>
+        </li>
       </ul>
     </div>
   </nav>

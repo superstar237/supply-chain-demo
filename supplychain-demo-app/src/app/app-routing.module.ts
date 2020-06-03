@@ -33,6 +33,9 @@ import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 import { SampleTransactionComponent } from './SampleTransaction/SampleTransaction.component';
 
+import { GeneratorsByStateComponent } from './GeneratorsByState/GeneratorsByState.component';
+import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
+
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'Generators', component: GeneratorsComponent },
@@ -48,6 +51,8 @@ const routes: Routes = [
   { path: 'ClearData', component: ClearDataComponent },
   { path: 'Process', component: ProcessComponent },
   { path: 'SampleTransaction', component: SampleTransactionComponent },
+  { path: 'queries/selectGeneratorsByState', component: GeneratorsByStateComponent },
+  { path: 'queries/selectProcessed', component: SelectProcessComponent },
   { path: '**', redirectTo: '' }
 ];
 
