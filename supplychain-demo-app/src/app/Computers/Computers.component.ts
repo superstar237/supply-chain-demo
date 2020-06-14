@@ -36,6 +36,7 @@ export class ComputersComponent implements OnInit {
   modelName = new FormControl('', Validators.required);
   serialNo = new FormControl('', Validators.required);
   amount = new FormControl('', Validators.required);
+  price = new FormControl('', Validators.required);
   atState = new FormControl('', Validators.required);
 
   constructor(public serviceComputers: ComputersService, fb: FormBuilder) {
@@ -44,6 +45,7 @@ export class ComputersComponent implements OnInit {
       modelName: this.modelName,
       serialNo: this.serialNo,
       amount: this.amount,
+      price: this.price,
       atState: this.atState
     });
   };
@@ -106,6 +108,7 @@ export class ComputersComponent implements OnInit {
       'modelName': this.modelName.value,
       'serialNo': this.serialNo.value,
       'amount': this.amount.value,
+      'price': this.price.value,
       'atState': this.atState.value
     };
 
@@ -114,6 +117,7 @@ export class ComputersComponent implements OnInit {
       'modelName': null,
       'serialNo': null,
       'amount': null,
+      'price': null,
       'atState': null
     });
 
@@ -126,6 +130,7 @@ export class ComputersComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null
       });
       this.loadAll();
@@ -146,6 +151,7 @@ export class ComputersComponent implements OnInit {
       'modelName': this.modelName.value,
       'serialNo': this.serialNo.value,
       'amount': this.amount.value,
+      'price': this.price.value,
       'atState': this.atState.value
     };
 
@@ -201,6 +207,7 @@ export class ComputersComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null
       };
 
@@ -226,6 +233,12 @@ export class ComputersComponent implements OnInit {
         formObject.amount = result.amount;
       } else {
         formObject.amount = null;
+      }
+
+      if (result.price) {
+        formObject.price = result.price;
+      } else {
+        formObject.price = null;
       }
 
       if (result.atState) {
@@ -254,6 +267,7 @@ export class ComputersComponent implements OnInit {
       'modelName': null,
       'serialNo': null,
       'amount': null,
+      'price': null,
       'atState': null
       });
   }

@@ -23,16 +23,12 @@ import {Event} from './org.hyperledger.composer.system';
       vendorId: string;
       name: string;
    }
-   export class SampleParticipant extends Participant {
-      participantId: string;
-      firstName: string;
-      lastName: string;
-   }
    export abstract class Product extends Asset {
       productId: string;
       modelName: string;
       serialNo: string;
       amount: number;
+      price: number;
       atState: ProductState;
    }
    export class Generators extends Product {
@@ -41,30 +37,19 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class AirplaneWings extends Product {
    }
-   export class MaritimeEquiqments extends Product {
+   export class MaritimeRadarSystems extends Product {
    }
-   export class SampleAsset extends Asset {
-      assetId: string;
-      owner: SampleParticipant;
-      value: string;
+   export class ArmoredVehicles extends Product {
    }
    export class InitTestData extends Transaction {
    }
    export class ClearData extends Transaction {
    }
    export class Process extends Transaction {
-      product: Product;
+      productName: string;
+      productId: string;
       fromState: ProductState;
       toState: ProductState;
-   }
-   export class SampleTransaction extends Transaction {
-      asset: SampleAsset;
-      newValue: string;
-   }
-   export class SampleEvent extends Event {
-      asset: SampleAsset;
-      oldValue: string;
-      newValue: string;
    }
    export class GeneratorsByState extends Query {
    }

@@ -14,16 +14,16 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { MaritimeEquiqmentsService } from './MaritimeEquiqments.service';
+import { MaritimeRadarSystemsService } from './MaritimeRadarSystems.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-maritimeequiqments',
-  templateUrl: './MaritimeEquiqments.component.html',
-  styleUrls: ['./MaritimeEquiqments.component.css'],
-  providers: [MaritimeEquiqmentsService]
+  selector: 'app-maritimeradarsystems',
+  templateUrl: './MaritimeRadarSystems.component.html',
+  styleUrls: ['./MaritimeRadarSystems.component.css'],
+  providers: [MaritimeRadarSystemsService]
 })
-export class MaritimeEquiqmentsComponent implements OnInit {
+export class MaritimeRadarSystemsComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -36,14 +36,16 @@ export class MaritimeEquiqmentsComponent implements OnInit {
   modelName = new FormControl('', Validators.required);
   serialNo = new FormControl('', Validators.required);
   amount = new FormControl('', Validators.required);
+  price = new FormControl('', Validators.required);
   atState = new FormControl('', Validators.required);
 
-  constructor(public serviceMaritimeEquiqments: MaritimeEquiqmentsService, fb: FormBuilder) {
+  constructor(public serviceMaritimeRadarSystems: MaritimeRadarSystemsService, fb: FormBuilder) {
     this.myForm = fb.group({
       productId: this.productId,
       modelName: this.modelName,
       serialNo: this.serialNo,
       amount: this.amount,
+      price: this.price,
       atState: this.atState
     });
   };
@@ -54,7 +56,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceMaritimeEquiqments.getAll()
+    return this.serviceMaritimeRadarSystems.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -101,11 +103,12 @@ export class MaritimeEquiqmentsComponent implements OnInit {
 
   addAsset(form: any): Promise<any> {
     this.asset = {
-      $class: 'org.legacy.network.MaritimeEquiqments',
+      $class: 'org.legacy.network.MaritimeRadarSystems',
       'productId': this.productId.value,
       'modelName': this.modelName.value,
       'serialNo': this.serialNo.value,
       'amount': this.amount.value,
+      'price': this.price.value,
       'atState': this.atState.value
     };
 
@@ -114,10 +117,11 @@ export class MaritimeEquiqmentsComponent implements OnInit {
       'modelName': null,
       'serialNo': null,
       'amount': null,
+      'price': null,
       'atState': null
     });
 
-    return this.serviceMaritimeEquiqments.addAsset(this.asset)
+    return this.serviceMaritimeRadarSystems.addAsset(this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -126,6 +130,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null
       });
       this.loadAll();
@@ -142,14 +147,15 @@ export class MaritimeEquiqmentsComponent implements OnInit {
 
   updateAsset(form: any): Promise<any> {
     this.asset = {
-      $class: 'org.legacy.network.MaritimeEquiqments',
+      $class: 'org.legacy.network.MaritimeRadarSystems',
       'modelName': this.modelName.value,
       'serialNo': this.serialNo.value,
       'amount': this.amount.value,
+      'price': this.price.value,
       'atState': this.atState.value
     };
 
-    return this.serviceMaritimeEquiqments.updateAsset(form.get('productId').value, this.asset)
+    return this.serviceMaritimeRadarSystems.updateAsset(form.get('productId').value, this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -169,7 +175,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
 
   deleteAsset(): Promise<any> {
 
-    return this.serviceMaritimeEquiqments.deleteAsset(this.currentId)
+    return this.serviceMaritimeRadarSystems.deleteAsset(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -192,7 +198,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceMaritimeEquiqments.getAsset(id)
+    return this.serviceMaritimeRadarSystems.getAsset(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -201,6 +207,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null
       };
 
@@ -226,6 +233,12 @@ export class MaritimeEquiqmentsComponent implements OnInit {
         formObject.amount = result.amount;
       } else {
         formObject.amount = null;
+      }
+
+      if (result.price) {
+        formObject.price = result.price;
+      } else {
+        formObject.price = null;
       }
 
       if (result.atState) {
@@ -254,6 +267,7 @@ export class MaritimeEquiqmentsComponent implements OnInit {
       'modelName': null,
       'serialNo': null,
       'amount': null,
+      'price': null,
       'atState': null
       });
   }

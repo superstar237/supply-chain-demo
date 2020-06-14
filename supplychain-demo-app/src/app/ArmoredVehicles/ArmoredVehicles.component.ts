@@ -14,34 +14,39 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { SampleParticipantService } from './SampleParticipant.service';
+import { ArmoredVehiclesService } from './ArmoredVehicles.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
-  selector: 'app-sampleparticipant',
-  templateUrl: './SampleParticipant.component.html',
-  styleUrls: ['./SampleParticipant.component.css'],
-  providers: [SampleParticipantService]
+  selector: 'app-armoredvehicles',
+  templateUrl: './ArmoredVehicles.component.html',
+  styleUrls: ['./ArmoredVehicles.component.css'],
+  providers: [ArmoredVehiclesService]
 })
-export class SampleParticipantComponent implements OnInit {
+export class ArmoredVehiclesComponent implements OnInit {
 
   myForm: FormGroup;
 
-  private allParticipants;
-  private participant;
+  private allAssets;
+  private asset;
   private currentId;
   private errorMessage;
 
-  participantId = new FormControl('', Validators.required);
-  firstName = new FormControl('', Validators.required);
-  lastName = new FormControl('', Validators.required);
+  productId = new FormControl('', Validators.required);
+  modelName = new FormControl('', Validators.required);
+  serialNo = new FormControl('', Validators.required);
+  amount = new FormControl('', Validators.required);
+  price = new FormControl('', Validators.required);
+  atState = new FormControl('', Validators.required);
 
-
-  constructor(public serviceSampleParticipant: SampleParticipantService, fb: FormBuilder) {
+  constructor(public serviceArmoredVehicles: ArmoredVehiclesService, fb: FormBuilder) {
     this.myForm = fb.group({
-      participantId: this.participantId,
-      firstName: this.firstName,
-      lastName: this.lastName
+      productId: this.productId,
+      modelName: this.modelName,
+      serialNo: this.serialNo,
+      amount: this.amount,
+      price: this.price,
+      atState: this.atState
     });
   };
 
@@ -51,20 +56,21 @@ export class SampleParticipantComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceSampleParticipant.getAll()
+    return this.serviceArmoredVehicles.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
-      result.forEach(participant => {
-        tempList.push(participant);
+      result.forEach(asset => {
+        tempList.push(asset);
       });
-      this.allParticipants = tempList;
+      this.allAssets = tempList;
     })
     .catch((error) => {
       if (error === 'Server error') {
         this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else if (error === '404 - Not Found') {
         this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+      } else {
         this.errorMessage = error;
       }
     });
@@ -72,7 +78,7 @@ export class SampleParticipantComponent implements OnInit {
 
 	/**
    * Event handler for changing the checked state of a checkbox (handles array enumeration values)
-   * @param {String} name - the name of the participant field to update
+   * @param {String} name - the name of the asset field to update
    * @param {any} value - the enumeration value for which to toggle the checked state
    */
   changeArrayValue(name: string, value: any): void {
@@ -86,58 +92,70 @@ export class SampleParticipantComponent implements OnInit {
 
 	/**
 	 * Checkbox helper, determining whether an enumeration value should be selected or not (for array enumeration values
-   * only). This is used for checkboxes in the participant updateDialog.
-   * @param {String} name - the name of the participant field to check
+   * only). This is used for checkboxes in the asset updateDialog.
+   * @param {String} name - the name of the asset field to check
    * @param {any} value - the enumeration value to check for
-   * @return {Boolean} whether the specified participant field contains the provided value
+   * @return {Boolean} whether the specified asset field contains the provided value
    */
   hasArrayValue(name: string, value: any): boolean {
     return this[name].value.indexOf(value) !== -1;
   }
 
-  addParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'org.legacy.network.SampleParticipant',
-      'participantId': this.participantId.value,
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+  addAsset(form: any): Promise<any> {
+    this.asset = {
+      $class: 'org.legacy.network.ArmoredVehicles',
+      'productId': this.productId.value,
+      'modelName': this.modelName.value,
+      'serialNo': this.serialNo.value,
+      'amount': this.amount.value,
+      'price': this.price.value,
+      'atState': this.atState.value
     };
 
     this.myForm.setValue({
-      'participantId': null,
-      'firstName': null,
-      'lastName': null
+      'productId': null,
+      'modelName': null,
+      'serialNo': null,
+      'amount': null,
+      'price': null,
+      'atState': null
     });
 
-    return this.serviceSampleParticipant.addParticipant(this.participant)
+    return this.serviceArmoredVehicles.addAsset(this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'participantId': null,
-        'firstName': null,
-        'lastName': null
+        'productId': null,
+        'modelName': null,
+        'serialNo': null,
+        'amount': null,
+        'price': null,
+        'atState': null
       });
-      this.loadAll(); 
+      this.loadAll();
     })
     .catch((error) => {
       if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
       } else {
-        this.errorMessage = error;
+          this.errorMessage = error;
       }
     });
   }
 
 
-   updateParticipant(form: any): Promise<any> {
-    this.participant = {
-      $class: 'org.legacy.network.SampleParticipant',
-      'firstName': this.firstName.value,
-      'lastName': this.lastName.value
+  updateAsset(form: any): Promise<any> {
+    this.asset = {
+      $class: 'org.legacy.network.ArmoredVehicles',
+      'modelName': this.modelName.value,
+      'serialNo': this.serialNo.value,
+      'amount': this.amount.value,
+      'price': this.price.value,
+      'atState': this.atState.value
     };
 
-    return this.serviceSampleParticipant.updateParticipant(form.get('participantId').value, this.participant)
+    return this.serviceArmoredVehicles.updateAsset(form.get('productId').value, this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -155,9 +173,9 @@ export class SampleParticipantComponent implements OnInit {
   }
 
 
-  deleteParticipant(): Promise<any> {
+  deleteAsset(): Promise<any> {
 
-    return this.serviceSampleParticipant.deleteParticipant(this.currentId)
+    return this.serviceArmoredVehicles.deleteAsset(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -180,35 +198,57 @@ export class SampleParticipantComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceSampleParticipant.getparticipant(id)
+    return this.serviceArmoredVehicles.getAsset(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'participantId': null,
-        'firstName': null,
-        'lastName': null
+        'productId': null,
+        'modelName': null,
+        'serialNo': null,
+        'amount': null,
+        'price': null,
+        'atState': null
       };
 
-      if (result.participantId) {
-        formObject.participantId = result.participantId;
+      if (result.productId) {
+        formObject.productId = result.productId;
       } else {
-        formObject.participantId = null;
+        formObject.productId = null;
       }
 
-      if (result.firstName) {
-        formObject.firstName = result.firstName;
+      if (result.modelName) {
+        formObject.modelName = result.modelName;
       } else {
-        formObject.firstName = null;
+        formObject.modelName = null;
       }
 
-      if (result.lastName) {
-        formObject.lastName = result.lastName;
+      if (result.serialNo) {
+        formObject.serialNo = result.serialNo;
       } else {
-        formObject.lastName = null;
+        formObject.serialNo = null;
+      }
+
+      if (result.amount) {
+        formObject.amount = result.amount;
+      } else {
+        formObject.amount = null;
+      }
+
+      if (result.price) {
+        formObject.price = result.price;
+      } else {
+        formObject.price = null;
+      }
+
+      if (result.atState) {
+        formObject.atState = result.atState;
+      } else {
+        formObject.atState = null;
       }
 
       this.myForm.setValue(formObject);
+
     })
     .catch((error) => {
       if (error === 'Server error') {
@@ -219,14 +259,17 @@ export class SampleParticipantComponent implements OnInit {
         this.errorMessage = error;
       }
     });
-
   }
 
   resetForm(): void {
     this.myForm.setValue({
-      'participantId': null,
-      'firstName': null,
-      'lastName': null
-    });
+      'productId': null,
+      'modelName': null,
+      'serialNo': null,
+      'amount': null,
+      'price': null,
+      'atState': null
+      });
   }
+
 }

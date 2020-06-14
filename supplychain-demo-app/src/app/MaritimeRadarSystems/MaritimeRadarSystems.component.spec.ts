@@ -21,25 +21,25 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { SampleParticipantComponent } from './SampleParticipant.component';
-import { SampleParticipantService } from './SampleParticipant.service';
-import { Observable } from 'rxjs';
+import { MaritimeRadarSystemsComponent } from './MaritimeRadarSystems.component';
+import { MaritimeRadarSystemsService } from './MaritimeRadarSystems.service';
+import { Observable } from 'rxjs'
 
-describe('SampleParticipantComponent', () => {
-  let component: SampleParticipantComponent;
-  let fixture: ComponentFixture<SampleParticipantComponent>;
+describe('MaritimeRadarSystemsComponent', () => {
+  let component: MaritimeRadarSystemsComponent;
+  let fixture: ComponentFixture<MaritimeRadarSystemsComponent>;
 
-  let mockSampleParticipantService;
+  let mockMaritimeRadarSystemsService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockSampleParticipantService = sinon.createStubInstance(SampleParticipantService);
-    mockSampleParticipantService.getAll.returns([]);
+    mockMaritimeRadarSystemsService = sinon.createStubInstance(MaritimeRadarSystemsService);
+    mockMaritimeRadarSystemsService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ SampleParticipantComponent ],
+      declarations: [ MaritimeRadarSystemsComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -47,12 +47,12 @@ describe('SampleParticipantComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: SampleParticipantService, useValue: mockSampleParticipantService },
+        {provide: MaritimeRadarSystemsService, useValue: mockMaritimeRadarSystemsService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(SampleParticipantComponent);
+    fixture = TestBed.createComponent(MaritimeRadarSystemsComponent);
     component = fixture.componentInstance;
 
   }));
@@ -61,35 +61,35 @@ describe('SampleParticipantComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the table when a SampleParticipant is added', fakeAsync(() => {
+  it('should update the table when a MaritimeRadarSystems is added', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleParticipant, 'addParticipant').returns(new Observable(observer => {
+    sinon.stub(component.serviceMaritimeRadarSystems, 'addAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
 
-    component.addParticipant({});
+    component.addAsset({});
 
     tick();
-
+    
     expect(loadAllSpy.callCount).toBe(1);
 
     loadAllSpy.restore();
   }));
 
-  it('should update the table when a SampleParticipant is updated', fakeAsync(() => {
+  it('should update the table when a MaritimeRadarSystems is updated', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleParticipant, 'updateParticipant').returns(new Observable(observer => {
+    sinon.stub(component.serviceMaritimeRadarSystems, 'updateAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      participantId: new FormControl('id')
+      productId: new FormControl('id')
     });
-    
-    component.updateParticipant(mockForm);
+
+    component.updateAsset(mockForm);
 
     tick();
 
@@ -97,21 +97,23 @@ describe('SampleParticipantComponent', () => {
 
     loadAllSpy.restore();
   }));
-  
-  it('should update the table when a SampleParticipant is deleted', fakeAsync(() => {
+
+  it('should update the table when a MaritimeRadarSystems is deleted', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleParticipant, 'deleteParticipant').returns(new Observable(observer => {
+    sinon.stub(component.serviceMaritimeRadarSystems, 'deleteAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
 
-    component.deleteParticipant();
+    component.setId('id');
+    
+    component.deleteAsset();
 
     tick();
 
     expect(loadAllSpy.callCount).toBe(1);
 
     loadAllSpy.restore();
-  }));
+  }));  
 
 });
