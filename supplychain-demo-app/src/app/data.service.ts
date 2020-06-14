@@ -90,7 +90,7 @@ export class DataService<Type> {
     public getGeneratorsByState(state: string ): Observable<Type[]> {
         //console.log('GetSingle ' + ns);
 
-        return this.http.get(this.actionUrl + '/queries/selectGeneratorsByState?state=' + state)
+        return this.http.get(this.actionUrl + '/queries/selectGeneratorsBySupplier?state=' + state)
           .map(this.extractData)
           .catch(this.handleError);
     }

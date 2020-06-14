@@ -32,7 +32,8 @@ export class ProcessComponent implements OnInit {
   private currentId;
   private errorMessage;
 
-  product = new FormControl('', Validators.required);
+  productName = new FormControl('', Validators.required);
+  productId = new FormControl('', Validators.required);
   fromState = new FormControl('', Validators.required);
   toState = new FormControl('', Validators.required);
   transactionId = new FormControl('', Validators.required);
@@ -41,7 +42,8 @@ export class ProcessComponent implements OnInit {
 
   constructor(private serviceProcess: ProcessService, fb: FormBuilder) {
     this.myForm = fb.group({
-      product: this.product,
+      productName: this.productName,
+      productId: this.productId,
       fromState: this.fromState,
       toState: this.toState,
       transactionId: this.transactionId,
@@ -103,7 +105,8 @@ export class ProcessComponent implements OnInit {
   addTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.legacy.network.Process',
-      'product': this.product.value,
+      'productName': this.productName.value,
+      'productId': this.productId.value,
       'fromState': this.fromState.value,
       'toState': this.toState.value,
       'transactionId': this.transactionId.value,
@@ -111,7 +114,8 @@ export class ProcessComponent implements OnInit {
     };
 
     this.myForm.setValue({
-      'product': null,
+      'productName': null,
+      'productId': null,
       'fromState': null,
       'toState': null,
       'transactionId': null,
@@ -123,7 +127,8 @@ export class ProcessComponent implements OnInit {
     .then(() => {
       this.errorMessage = null;
       this.myForm.setValue({
-        'product': null,
+        'productName': null,
+        'productId': null,
         'fromState': null,
         'toState': null,
         'transactionId': null,
@@ -142,7 +147,8 @@ export class ProcessComponent implements OnInit {
   updateTransaction(form: any): Promise<any> {
     this.Transaction = {
       $class: 'org.legacy.network.Process',
-      'product': this.product.value,
+      'productName': this.productName.value,
+      'productId': this.productId.value,
       'fromState': this.fromState.value,
       'toState': this.toState.value,
       'timestamp': this.timestamp.value
@@ -193,17 +199,24 @@ export class ProcessComponent implements OnInit {
     .then((result) => {
       this.errorMessage = null;
       const formObject = {
-        'product': null,
+        'productName': null,
+        'productId': null,
         'fromState': null,
         'toState': null,
         'transactionId': null,
         'timestamp': null
       };
 
-      if (result.product) {
-        formObject.product = result.product;
+      if (result.productName) {
+        formObject.productName = result.productName;
       } else {
-        formObject.product = null;
+        formObject.productName = null;
+      }
+
+      if (result.productId) {
+        formObject.productId = result.productId;
+      } else {
+        formObject.productId = null;
       }
 
       if (result.fromState) {
@@ -246,7 +259,8 @@ export class ProcessComponent implements OnInit {
 
   resetForm(): void {
     this.myForm.setValue({
-      'product': null,
+      'productName': null,
+      'productId': null,
       'fromState': null,
       'toState': null,
       'transactionId': null,

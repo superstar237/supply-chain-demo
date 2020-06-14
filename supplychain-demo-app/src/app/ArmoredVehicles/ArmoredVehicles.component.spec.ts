@@ -21,25 +21,25 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { SampleAssetComponent } from './SampleAsset.component';
-import { SampleAssetService } from './SampleAsset.service';
+import { ArmoredVehiclesComponent } from './ArmoredVehicles.component';
+import { ArmoredVehiclesService } from './ArmoredVehicles.service';
 import { Observable } from 'rxjs'
 
-describe('SampleAssetComponent', () => {
-  let component: SampleAssetComponent;
-  let fixture: ComponentFixture<SampleAssetComponent>;
+describe('ArmoredVehiclesComponent', () => {
+  let component: ArmoredVehiclesComponent;
+  let fixture: ComponentFixture<ArmoredVehiclesComponent>;
 
-  let mockSampleAssetService;
+  let mockArmoredVehiclesService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockSampleAssetService = sinon.createStubInstance(SampleAssetService);
-    mockSampleAssetService.getAll.returns([]);
+    mockArmoredVehiclesService = sinon.createStubInstance(ArmoredVehiclesService);
+    mockArmoredVehiclesService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ SampleAssetComponent ],
+      declarations: [ ArmoredVehiclesComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -47,12 +47,12 @@ describe('SampleAssetComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: SampleAssetService, useValue: mockSampleAssetService },
+        {provide: ArmoredVehiclesService, useValue: mockArmoredVehiclesService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(SampleAssetComponent);
+    fixture = TestBed.createComponent(ArmoredVehiclesComponent);
     component = fixture.componentInstance;
 
   }));
@@ -61,9 +61,9 @@ describe('SampleAssetComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update the table when a SampleAsset is added', fakeAsync(() => {
+  it('should update the table when a ArmoredVehicles is added', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleAsset, 'addAsset').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceArmoredVehicles, 'addAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -77,16 +77,16 @@ describe('SampleAssetComponent', () => {
     loadAllSpy.restore();
   }));
 
-  it('should update the table when a SampleAsset is updated', fakeAsync(() => {
+  it('should update the table when a ArmoredVehicles is updated', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleAsset, 'updateAsset').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceArmoredVehicles, 'updateAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
 
     // mock form to be passed to the update function
     let mockForm = new FormGroup({
-      assetId: new FormControl('id')
+      productId: new FormControl('id')
     });
 
     component.updateAsset(mockForm);
@@ -98,9 +98,9 @@ describe('SampleAssetComponent', () => {
     loadAllSpy.restore();
   }));
 
-  it('should update the table when a SampleAsset is deleted', fakeAsync(() => {
+  it('should update the table when a ArmoredVehicles is deleted', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceSampleAsset, 'deleteAsset').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceArmoredVehicles, 'deleteAsset').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));

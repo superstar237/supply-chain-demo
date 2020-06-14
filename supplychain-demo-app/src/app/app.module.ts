@@ -24,18 +24,16 @@ import { HomeComponent } from './home/home.component';
 import { GeneratorsComponent } from './Generators/Generators.component';
 import { ComputersComponent } from './Computers/Computers.component';
 import { AirplaneWingsComponent } from './AirplaneWings/AirplaneWings.component';
-import { MaritimeEquiqmentsComponent } from './MaritimeEquiqments/MaritimeEquiqments.component';
-import { SampleAssetComponent } from './SampleAsset/SampleAsset.component';
+import { MaritimeRadarSystemsComponent } from './MaritimeRadarSystems/MaritimeRadarSystems.component';
+import { ArmoredVehiclesComponent } from './ArmoredVehicles/ArmoredVehicles.component';
 
 import { ManufacturerComponent } from './Manufacturer/Manufacturer.component';
 import { DistributorComponent } from './Distributor/Distributor.component';
 import { VendorComponent } from './Vendor/Vendor.component';
-import { SampleParticipantComponent } from './SampleParticipant/SampleParticipant.component';
 
 import { InitTestDataComponent } from './InitTestData/InitTestData.component';
 import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
-import { SampleTransactionComponent } from './SampleTransaction/SampleTransaction.component';
 
 import { GeneratorsByStateComponent } from './GeneratorsByState/GeneratorsByState.component';
 import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
@@ -47,16 +45,14 @@ import { SelectProcessComponent } from './SelectProcess/SelectProcess.component'
     GeneratorsComponent,
     ComputersComponent,
     AirplaneWingsComponent,
-    MaritimeEquiqmentsComponent,
-    SampleAssetComponent,
+    MaritimeRadarSystemsComponent,
+    ArmoredVehiclesComponent,
     ManufacturerComponent,
     DistributorComponent,
     VendorComponent,
-    SampleParticipantComponent,
     InitTestDataComponent,
     ClearDataComponent,
     ProcessComponent,
-    SampleTransactionComponent,
     GeneratorsByStateComponent,
     SelectProcessComponent
   ],

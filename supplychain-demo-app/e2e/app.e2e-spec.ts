@@ -63,10 +63,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('Generators table should have 6 columns',() => {
+    it('Generators table should have 7 columns',() => {
       page.navigateTo('/Generators');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
       });
     });
   
@@ -81,10 +81,10 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('Computers table should have 6 columns',() => {
+    it('Computers table should have 7 columns',() => {
       page.navigateTo('/Computers');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
       });
     });
   
@@ -99,46 +99,46 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
 
-    it('AirplaneWings table should have 6 columns',() => {
+    it('AirplaneWings table should have 7 columns',() => {
       page.navigateTo('/AirplaneWings');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
       });
     });
   
-    it('MaritimeEquiqments component should be loadable',() => {
-      page.navigateTo('/MaritimeEquiqments');
+    it('MaritimeRadarSystems component should be loadable',() => {
+      page.navigateTo('/MaritimeRadarSystems');
       browser.findElement(by.id('assetName'))
       .then((assetName) => {
         return assetName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('MaritimeEquiqments');
+        expect(txt).toBe('MaritimeRadarSystems');
       });
     });
 
-    it('MaritimeEquiqments table should have 6 columns',() => {
-      page.navigateTo('/MaritimeEquiqments');
+    it('MaritimeRadarSystems table should have 7 columns',() => {
+      page.navigateTo('/MaritimeRadarSystems');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(6); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
       });
     });
   
-    it('SampleAsset component should be loadable',() => {
-      page.navigateTo('/SampleAsset');
+    it('ArmoredVehicles component should be loadable',() => {
+      page.navigateTo('/ArmoredVehicles');
       browser.findElement(by.id('assetName'))
       .then((assetName) => {
         return assetName.getText();
       })
       .then((txt) => {
-        expect(txt).toBe('SampleAsset');
+        expect(txt).toBe('ArmoredVehicles');
       });
     });
 
-    it('SampleAsset table should have 4 columns',() => {
-      page.navigateTo('/SampleAsset');
+    it('ArmoredVehicles table should have 7 columns',() => {
+      page.navigateTo('/ArmoredVehicles');
       element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(4); // Addition of 1 for 'Action' column
+        expect(arr.length).toEqual(7); // Addition of 1 for 'Action' column
       });
     });
   
@@ -198,24 +198,6 @@ describe('Starting tests for supplychain-demo-app', function() {
       });
     });
   
-    it('SampleParticipant component should be loadable',() => {
-      page.navigateTo('/SampleParticipant');
-      browser.findElement(by.id('participantName'))
-      .then((participantName) => {
-        return participantName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('SampleParticipant');
-      });
-    });
-
-    it('SampleParticipant table should have 4 columns',() => {
-      page.navigateTo('/SampleParticipant');
-      element.all(by.css('.thead-cols th')).then(function(arr) {
-        expect(arr.length).toEqual(4); // Addition of 1 for 'Action' column
-      });
-    });
-  
 
   
     it('InitTestData component should be loadable',() => {
@@ -248,17 +230,6 @@ describe('Starting tests for supplychain-demo-app', function() {
       })
       .then((txt) => {
         expect(txt).toBe('Process');
-      });
-    });
-  
-    it('SampleTransaction component should be loadable',() => {
-      page.navigateTo('/SampleTransaction');
-      browser.findElement(by.id('transactionName'))
-      .then((transactionName) => {
-        return transactionName.getText();
-      })
-      .then((txt) => {
-        expect(txt).toBe('SampleTransaction');
       });
     });
   

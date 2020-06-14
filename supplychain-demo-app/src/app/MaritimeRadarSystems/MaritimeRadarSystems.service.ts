@@ -15,35 +15,35 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../data.service';
 import { Observable } from 'rxjs/Observable';
-import { SampleAsset } from '../org.legacy.network';
+import { MaritimeRadarSystems } from '../org.legacy.network';
 import 'rxjs/Rx';
 
 // Can be injected into a constructor
 @Injectable()
-export class SampleAssetService {
+export class MaritimeRadarSystemsService {
 
-  private NAMESPACE = 'SampleAsset';
+  private NAMESPACE = 'MaritimeRadarSystems';
 
-  constructor(private dataService: DataService<SampleAsset>) {
+  constructor(private dataService: DataService<MaritimeRadarSystems>) {
   };
 
-  public getAll(): Observable<SampleAsset[]> {
+  public getAll(): Observable<MaritimeRadarSystems[]> {
     return this.dataService.getAll(this.NAMESPACE);
   }
 
-  public getAsset(id: any): Observable<SampleAsset> {
+  public getAsset(id: any): Observable<MaritimeRadarSystems> {
     return this.dataService.getSingle(this.NAMESPACE, id);
   }
 
-  public addAsset(itemToAdd: any): Observable<SampleAsset> {
+  public addAsset(itemToAdd: any): Observable<MaritimeRadarSystems> {
     return this.dataService.add(this.NAMESPACE, itemToAdd);
   }
 
-  public updateAsset(id: any, itemToUpdate: any): Observable<SampleAsset> {
+  public updateAsset(id: any, itemToUpdate: any): Observable<MaritimeRadarSystems> {
     return this.dataService.update(this.NAMESPACE, id, itemToUpdate);
   }
 
-  public deleteAsset(id: any): Observable<SampleAsset> {
+  public deleteAsset(id: any): Observable<MaritimeRadarSystems> {
     return this.dataService.delete(this.NAMESPACE, id);
   }
 

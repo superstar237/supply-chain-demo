@@ -27,16 +27,26 @@
 
             
               <div class="form-group text-left">
-                <label for="product">product</label>
+                <label for="productName">Product Name</label>
                 
-                    <textarea formControlName="product" class="form-control" rows="3"></textarea>
+                  <input formControlName="productName" type="text" class="form-control">
                 
               </div>
             
           
 
             
-              <label for="fromState">fromState</label>
+              <div class="form-group text-left">
+                <label for="productId">Asset ID</label>
+                
+                  <input formControlName="productId" type="text" class="form-control">
+                
+              </div>
+            
+          
+
+            
+              <label for="fromState">From Origin</label>
               <div class="checkbox">
                 
                   <label>
@@ -109,7 +119,7 @@
           
 
             
-              <label for="toState">toState</label>
+              <label for="toState">To Supplier State</label>
               <div class="checkbox">
                 
                   <label>
@@ -212,20 +222,24 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-12">
-          When invoked, this transaction will have the following attributes:
+          When executed, this transaction will have the following attributes:
           <br>
           <ul>
             
               
-                <li><span class="attribute"><b>product</b></span></li>
+                <li><span class="attribute"><b>Product Name</b></span></li>
               
             
               
-                <li><span class="attribute"><b>fromState</b></span></li>
+                <li><span class="attribute"><b>Asset ID</b></span></li>
               
             
               
-                <li><span class="attribute"><b>toState</b></span></li>
+                <li><span class="attribute"><b>From Origin</b></span></li>
+              
+            
+              
+                <li><span class="attribute"><b>To Supplier State</b></span></li>
               
             
               
@@ -235,7 +249,7 @@
           </ul>
         </div>
       </div>
-      <button (click)="resetForm();" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTransactionModal">Invoke</button>
+      <button (click)="resetForm();" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTransactionModal">Execute</button>
     </div>
   </div>
 </div>
