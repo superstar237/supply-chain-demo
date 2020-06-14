@@ -31,6 +31,10 @@ export class SelectProcessService {
     return this.dataService.getAll(this.NAMESPACE);
   }
 
+  public getAllProcessed(name: string): Observable<SelectProcess[]> {
+    return this.dataService.getProcessed(name);
+  }
+
   public getQuery(name: string): Observable<SelectProcess[]> {
     return this.dataService.getProcessed(name);
   }
