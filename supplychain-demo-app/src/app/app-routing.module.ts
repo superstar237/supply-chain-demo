@@ -32,6 +32,10 @@ import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 
 import { GeneratorsBySupplierComponent } from './GeneratorsBySupplier/GeneratorsBySupplier.component';
+import { ComputersBySupplierComponent } from './ComputersBySupplier/ComputersBySupplier.component';
+import { AirplaneWingsBySupplierComponent } from './AirplaneWingsBySupplier/AirplaneWingsBySupplier.component';
+import { MaritimeRadarSystemsBySupplierComponent } from './MaritimeRadarSystemsBySupplier/MaritimeRadarSystemsBySupplier.component';
+import { ArmoredVehiclesBySupplierComponent } from './ArmoredVehiclesBySupplier/ArmoredVehiclesBySupplier.component';
 import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
 
 const routes: Routes = [
@@ -48,6 +52,10 @@ const routes: Routes = [
   { path: 'ClearData', component: ClearDataComponent },
   { path: 'Process', component: ProcessComponent },
   { path: 'queries/selectGeneratorsBySupplier', component: GeneratorsBySupplierComponent },
+  { path: 'queries/selectComputersBySupplier', component: ComputersBySupplierComponent },
+  { path: 'queries/selectAirplaneWingsBySupplier', component: AirplaneWingsBySupplierComponent },
+  { path: 'queries/selectMaritimeRadarSystemsBySupplier', component: MaritimeRadarSystemsBySupplierComponent },
+  { path: 'queries/selectArmoredVehiclesBySupplier', component: ArmoredVehiclesBySupplierComponent },
   { path: 'queries/selectProcessed', component: SelectProcessComponent },
   { path: '**', redirectTo: '' }
 ];

@@ -36,6 +36,10 @@ import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 
 import { GeneratorsBySupplierComponent } from './GeneratorsBySupplier/GeneratorsBySupplier.component';
+import { ComputersBySupplierComponent } from './ComputersBySupplier/ComputersBySupplier.component';
+import { AirplaneWingsBySupplierComponent } from './AirplaneWingsBySupplier/AirplaneWingsBySupplier.component';
+import { MaritimeRadarSystemsBySupplierComponent } from './MaritimeRadarSystemsBySupplier/MaritimeRadarSystemsBySupplier.component';
+import { ArmoredVehiclesBySupplierComponent } from './ArmoredVehiclesBySupplier/ArmoredVehiclesBySupplier.component';
 import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
 
   @NgModule({
@@ -54,6 +58,10 @@ import { SelectProcessComponent } from './SelectProcess/SelectProcess.component'
     ClearDataComponent,
     ProcessComponent,
     GeneratorsBySupplierComponent,
+    ComputersBySupplierComponent,
+    AirplaneWingsBySupplierComponent,
+    MaritimeRadarSystemsBySupplierComponent,
+    ArmoredVehiclesBySupplierComponent,
     SelectProcessComponent
   ],
   imports: [

@@ -53,6 +53,14 @@ import {Event} from './org.hyperledger.composer.system';
    }
    export class GeneratorsBySupplier extends Query {
    }
+   export class ComputersBySupplier extends Query {
+   }
+   export class AirplaneWingsBySupplier extends Query {
+   }
+   export class MaritimeRadarSystemsBySupplier extends Query {
+   }
+   export class ArmoredVehiclesBySupplier extends Query {
+   }
    export class SelectProcess extends Query {
    }
 // }
