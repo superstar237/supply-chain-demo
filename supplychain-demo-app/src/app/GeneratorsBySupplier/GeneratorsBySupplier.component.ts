@@ -14,16 +14,16 @@
 
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { GeneratorsByStateService } from './GeneratorsByState.service';
+import { GeneratorsBySupplierService } from './GeneratorsBySupplier.service';
 import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-generators',
-  templateUrl: './GeneratorsByState.component.html',
-  styleUrls: ['./GeneratorsByState.component.css'],
-  providers: [GeneratorsByStateService]
+  templateUrl: './GeneratorsBySupplier.component.html',
+  styleUrls: ['./GeneratorsBySupplier.component.css'],
+  providers: [GeneratorsBySupplierService]
 })
-export class GeneratorsByStateComponent implements OnInit {
+export class GeneratorsBySupplierComponent implements OnInit {
 
   myForm: FormGroup;
 
@@ -38,7 +38,7 @@ export class GeneratorsByStateComponent implements OnInit {
   amount = new FormControl('', Validators.required);
   atState = new FormControl('', Validators.required);
 
-  constructor(public serviceGeneratorsByState: GeneratorsByStateService, fb: FormBuilder) {
+  constructor(public serviceGeneratorsBySupplier: GeneratorsBySupplierService, fb: FormBuilder) {
     this.myForm = fb.group({
       productId: this.productId,
       modelName: this.modelName,
@@ -54,7 +54,7 @@ export class GeneratorsByStateComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceGeneratorsByState.getAll()
+    return this.serviceGeneratorsBySupplier.getAll()
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -118,7 +118,7 @@ export class GeneratorsByStateComponent implements OnInit {
     //   'atState': null
     // });
 
-    return this.serviceGeneratorsByState.getQuery(this.atState.value)
+    return this.serviceGeneratorsBySupplier.getQuery(this.atState.value)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;
@@ -163,7 +163,7 @@ export class GeneratorsByStateComponent implements OnInit {
       'atState': null
     });
 
-    return this.serviceGeneratorsByState.addQuery(this.asset)
+    return this.serviceGeneratorsBySupplier.addQuery(this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -195,7 +195,7 @@ export class GeneratorsByStateComponent implements OnInit {
       'atState': this.atState.value
     };
 
-    return this.serviceGeneratorsByState.updateQuery(form.get('productId').value, this.asset)
+    return this.serviceGeneratorsBySupplier.updateQuery(form.get('productId').value, this.asset)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -215,7 +215,7 @@ export class GeneratorsByStateComponent implements OnInit {
 
   deleteQuery(): Promise<any> {
 
-    return this.serviceGeneratorsByState.deleteQuery(this.currentId)
+    return this.serviceGeneratorsBySupplier.deleteQuery(this.currentId)
     .toPromise()
     .then(() => {
       this.errorMessage = null;
@@ -238,7 +238,7 @@ export class GeneratorsByStateComponent implements OnInit {
 
   getForm(id: any): Promise<any> {
 
-    return this.serviceGeneratorsByState.getQuery(id)
+    return this.serviceGeneratorsBySupplier.getQuery(id)
     .toPromise()
     .then((result) => {
       this.errorMessage = null;

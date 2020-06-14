@@ -87,7 +87,7 @@ export class DataService<Type> {
         return res.json();
     }
 
-    public getGeneratorsByState(state: string ): Observable<Type[]> {
+    public getGeneratorsBySupplier(state: string ): Observable<Type[]> {
         //console.log('GetSingle ' + ns);
 
         return this.http.get(this.actionUrl + '/queries/selectGeneratorsBySupplier?state=' + state)

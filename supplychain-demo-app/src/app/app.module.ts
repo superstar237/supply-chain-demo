@@ -35,7 +35,7 @@ import { InitTestDataComponent } from './InitTestData/InitTestData.component';
 import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 
-import { GeneratorsByStateComponent } from './GeneratorsByState/GeneratorsByState.component';
+import { GeneratorsBySupplierComponent } from './GeneratorsBySupplier/GeneratorsBySupplier.component';
 import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
 
   @NgModule({
@@ -53,7 +53,7 @@ import { SelectProcessComponent } from './SelectProcess/SelectProcess.component'
     InitTestDataComponent,
     ClearDataComponent,
     ProcessComponent,
-    GeneratorsByStateComponent,
+    GeneratorsBySupplierComponent,
     SelectProcessComponent
   ],
   imports: [

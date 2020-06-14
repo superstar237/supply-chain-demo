@@ -31,7 +31,7 @@ import { InitTestDataComponent } from './InitTestData/InitTestData.component';
 import { ClearDataComponent } from './ClearData/ClearData.component';
 import { ProcessComponent } from './Process/Process.component';
 
-import { GeneratorsByStateComponent } from './GeneratorsByState/GeneratorsByState.component';
+import { GeneratorsBySupplierComponent } from './GeneratorsBySupplier/GeneratorsBySupplier.component';
 import { SelectProcessComponent } from './SelectProcess/SelectProcess.component';
 
 const routes: Routes = [
@@ -47,7 +47,7 @@ const routes: Routes = [
   { path: 'InitTestData', component: InitTestDataComponent },
   { path: 'ClearData', component: ClearDataComponent },
   { path: 'Process', component: ProcessComponent },
-  { path: 'queries/selectGeneratorsBySupplier', component: GeneratorsByStateComponent },
+  { path: 'queries/selectGeneratorsBySupplier', component: GeneratorsBySupplierComponent },
   { path: 'queries/selectProcessed', component: SelectProcessComponent },
   { path: '**', redirectTo: '' }
 ];

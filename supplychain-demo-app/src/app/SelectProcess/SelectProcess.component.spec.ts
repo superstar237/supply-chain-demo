@@ -22,7 +22,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angul
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
 import { SelectProcessComponent } from './SelectProcess.component';
-import { GeneratorsByStateService } from './SelectProcess.service';
+import { GeneratorsBySupplierService } from './SelectProcess.service';
 import { Observable } from 'rxjs'
 
 describe('SelectProcessComponent', () => {
@@ -34,7 +34,7 @@ describe('SelectProcessComponent', () => {
 
   beforeEach(async(() => {
 
-    mockGeneratorsService = sinon.createStubInstance(GeneratorsByStateService);
+    mockGeneratorsService = sinon.createStubInstance(GeneratorsBySupplierService);
     mockGeneratorsService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
@@ -47,7 +47,7 @@ describe('SelectProcessComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: GeneratorsByStateService, useValue: mockGeneratorsService },
+        {provide: GeneratorsBySupplierService, useValue: mockGeneratorsService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
@@ -63,7 +63,7 @@ describe('SelectProcessComponent', () => {
 
   it('should update the table when a Generators is added', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'addQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'addQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -79,7 +79,7 @@ describe('SelectProcessComponent', () => {
 
   it('should update the table when a Generators is updated', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'updateQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'updateQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -100,7 +100,7 @@ describe('SelectProcessComponent', () => {
 
   it('should update the table when a Generators is deleted', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'deleteQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'deleteQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
