@@ -2,31 +2,38 @@
  * New query file
  */
 
-query selectGeneratorsByState {
-  description: "Select all genetrators by state"
+query selectGeneratorsBySupplier {
+  description: "Select all genetrators by supplier"
   statement:
   	SELECT org.legacy.network.Generators
   		WHERE (atState == _$state)
 }
 
-query selectComputersByState {
-  description: "Select all computers by state"
+query selectComputersBySupplier {
+  description: "Select all computers by supplier"
   statement:
   	SELECT org.legacy.network.Computers
   		WHERE (atState == _$state)
 }
 
-query selectAirplaneWingsByState {
-  description: "Select all airplane wings by state"
+query selectAirplaneWingsBySupplier {
+  description: "Select all airplane wings by supplier"
   statement:
   	SELECT org.legacy.network.AirplaneWings
   		WHERE (atState == _$state)
 }
 
-query selectMaritimeEquiqmentsByState {
-  description: "Select all maritime equiqments by state"
+query selectMaritimeRadarSystemsBySupplier {
+  description: "Select all maritime radar systems by supplier"
   statement:
-  	SELECT org.legacy.network.MaritimeEquiqments
+  	SELECT org.legacy.network.MaritimeRadarSystems
+  		WHERE (atState == _$state)
+}
+
+query selectArmoredVehiclesBySupplier {
+  description: "Select all armored vehicles by supplier"
+  statement:
+  	SELECT org.legacy.network.ArmoredVehicles
   		WHERE (atState == _$state)
 }
 
