@@ -51,7 +51,7 @@ import {Event} from './org.hyperledger.composer.system';
       fromState: ProductState;
       toState: ProductState;
    }
-   export class GeneratorsByState extends Query {
+   export class GeneratorsBySupplier extends Query {
    }
    export class SelectProcess extends Query {
    }

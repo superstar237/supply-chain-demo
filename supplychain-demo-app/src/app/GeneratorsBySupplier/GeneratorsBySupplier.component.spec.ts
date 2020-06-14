@@ -21,25 +21,25 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import * as sinon from 'sinon';
 import { DataService } from '../data.service';
-import { GeneratorsByStateComponent } from './GeneratorsByState.component';
-import { GeneratorsByStateService } from './GeneratorsByState.service';
+import { GeneratorsBySupplierComponent } from './GeneratorsBySupplier.component';
+import { GeneratorsBySupplierService } from './GeneratorsBySupplier.service';
 import { Observable } from 'rxjs'
 
-describe('GeneratorsByStateComponent', () => {
-  let component: GeneratorsByStateComponent;
-  let fixture: ComponentFixture<GeneratorsByStateComponent>;
+describe('GeneratorsBySupplierComponent', () => {
+  let component: GeneratorsBySupplierComponent;
+  let fixture: ComponentFixture<GeneratorsBySupplierComponent>;
 
   let mockGeneratorsService;
   let mockDataService
 
   beforeEach(async(() => {
 
-    mockGeneratorsService = sinon.createStubInstance(GeneratorsByStateService);
+    mockGeneratorsService = sinon.createStubInstance(GeneratorsBySupplierService);
     mockGeneratorsService.getAll.returns([]);
     mockDataService = sinon.createStubInstance(DataService);
 
     TestBed.configureTestingModule({
-      declarations: [ GeneratorsByStateComponent ],
+      declarations: [ GeneratorsBySupplierComponent ],
       imports: [
         BrowserModule,
         FormsModule,
@@ -47,12 +47,12 @@ describe('GeneratorsByStateComponent', () => {
         HttpModule
       ],
       providers: [
-        {provide: GeneratorsByStateService, useValue: mockGeneratorsService },
+        {provide: GeneratorsBySupplierService, useValue: mockGeneratorsService },
         {provide: DataService, useValue: mockDataService },
       ]
     });
 
-    fixture = TestBed.createComponent(GeneratorsByStateComponent);
+    fixture = TestBed.createComponent(GeneratorsBySupplierComponent);
     component = fixture.componentInstance;
 
   }));
@@ -63,7 +63,7 @@ describe('GeneratorsByStateComponent', () => {
 
   it('should update the table when a Generators is added', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'addQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'addQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -79,7 +79,7 @@ describe('GeneratorsByStateComponent', () => {
 
   it('should update the table when a Generators is updated', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'updateQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'updateQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
@@ -100,7 +100,7 @@ describe('GeneratorsByStateComponent', () => {
 
   it('should update the table when a Generators is deleted', fakeAsync(() => {
     let loadAllSpy = sinon.stub(component, 'loadAll');
-    sinon.stub(component.serviceGeneratorsByState, 'deleteQuery').returns(new Observable<any>(observer => {
+    sinon.stub(component.serviceGeneratorsBySupplier, 'deleteQuery').returns(new Observable<any>(observer => {
       observer.next('');
       observer.complete();
     }));
