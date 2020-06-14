@@ -36,6 +36,7 @@ export class SelectProcessComponent implements OnInit {
   modelName = new FormControl('', Validators.required);
   serialNo = new FormControl('', Validators.required);
   amount = new FormControl('', Validators.required);
+  price = new FormControl('', Validators.required);
   atState = new FormControl('', Validators.required);
   name = new FormControl('', Validators.required);
 
@@ -45,6 +46,7 @@ export class SelectProcessComponent implements OnInit {
       modelName: this.modelName,
       serialNo: this.serialNo,
       amount: this.amount,
+      price: this.price,
       atState: this.atState,
       name: this.name
     });
@@ -56,24 +58,24 @@ export class SelectProcessComponent implements OnInit {
 
   loadAll(): Promise<any> {
     const tempList = [];
-    return this.serviceSelectProcess.getAll()
-    .toPromise()
-    .then((result) => {
-      this.errorMessage = null;
-      result.forEach(asset => {
-        tempList.push(asset);
+    return this.serviceSelectProcess.getAllProcessed("")
+      .toPromise()
+      .then((result) => {
+        this.errorMessage = null;
+        result.forEach(asset => {
+          tempList.push(asset);
+        });
+        this.allAssets = tempList;
+      })
+      .catch((error) => {
+        if (error === 'Server error') {
+          this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
+        } else if (error === '404 - Not Found') {
+          this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
+        } else {
+          this.errorMessage = error;
+        }
       });
-      this.allAssets = tempList;
-    })
-    .catch((error) => {
-      if (error === 'Server error') {
-        this.errorMessage = 'Could not connect to REST server. Please check your configuration details';
-      } else if (error === '404 - Not Found') {
-        this.errorMessage = '404 - Could not find API route. Please check your available APIs.';
-      } else {
-        this.errorMessage = error;
-      }
-    });
   }
 
 	/**
@@ -109,6 +111,7 @@ export class SelectProcessComponent implements OnInit {
       'modelName': this.modelName.value,
       'serialNo': this.serialNo.value,
       'amount': this.amount.value,
+      'price': this.price.value,
       'atState': this.atState.value,
       'name': this.name.value
     };
@@ -130,6 +133,7 @@ export class SelectProcessComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null,
         'name': null
       });
@@ -164,6 +168,7 @@ export class SelectProcessComponent implements OnInit {
         'modelName': null,
         'serialNo': null,
         'amount': null,
+        'price': null,
         'atState': null,
         'name': null
       };
@@ -218,6 +223,7 @@ export class SelectProcessComponent implements OnInit {
       'modelName': null,
       'serialNo': null,
       'amount': null,
+      'price': null,
       'atState': null,
       'name': null
       });
