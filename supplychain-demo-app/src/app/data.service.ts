@@ -95,6 +95,38 @@ export class DataService<Type> {
           .catch(this.handleError);
     }
 
+    public getComputersBySupplier(state: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectComputersBySupplier?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    public getAirplaneWingsBySupplier(state: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectAirplaneWingsBySupplier?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    public getMaritimeRadarSystemsBySupplier(state: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectMaritimeRadarSystemsBySupplier?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    public getArmoredVehiclesBySupplier(state: string ): Observable<Type[]> {
+        //console.log('GetSingle ' + ns);
+
+        return this.http.get(this.actionUrl + '/queries/selectArmoredVehiclesBySupplier?state=' + state)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
     public getProcessed(name: string ): Observable<Type[]> {
         //console.log('GetSingle ' + ns);
 
