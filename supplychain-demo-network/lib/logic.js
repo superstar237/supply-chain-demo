@@ -25,81 +25,85 @@ const PRODUCT_STATES = ['OriginState', 'Manufacturer', 'Distribution', 'Field', 
  */
 async function InitTestDataFunction(initTestData) {
  	const factory = getFactory();
-    const namespace = 'org.legacy.network';
+  const namespace = 'org.legacy.network';
 
-  	/* add participants */
-    let manufacturers = [
-      {
-        'manufacturerId': 'MA1',
-        'name': 'manufacturer1'
-      },
-      {
-        'manufacturerId': 'MA2',
-        'name': 'manufacturer2'
-      }
-    ];
+  /* add participants */
+  let manufacturers = [
+    {
+      'manufacturerId': 'MA1',
+      'name': 'manufacturer1'
+    },
+    {
+      'manufacturerId': 'MA2',
+      'name': 'manufacturer2'
+    }
+  ];
 
-    let distributors = [
-      {
-        'distributorId': 'DI1',
-        'name': 'distributor1'
-      },
-      {
-        'distributorId': 'DI2',
-        'name': 'distributor2'
-      }
-    ];
-  
-    // add the manufacturers
-    const manufacturerRegistry = await getParticipantRegistry(namespace + '.Manufacturer');
-    manufacturers = manufacturers.map(function (manufacturer) {
-      let newManufacturer = factory.newResource(namespace, 'Manufacturer', manufacturer.manufacturerId);
-      newManufacturer.name = manufacturer.name;
-      return newManufacturer;
-    });
-    await manufacturerRegistry.addAll(manufacturers);
-  
-    // add the distributors
-    const distributorRegistry = await getParticipantRegistry(namespace + '.Distributor');
-    distributors = distributors.map(function (distributor) {
-      let newDistributor = factory.newResource(namespace, 'Distributor', distributor.distributorId);
-      newDistributor.name = distributor.name;
-      return newDistributor;
-    });
-    await distributorRegistry.addAll(distributors);
-  
-  	/* add assets */
-    // add the generators
-    let generators = [
-      {
-        'productId': 'GE1',
-        'modelName': 'MO-GE-5215',
-        'serialNo': 'SN-GE-56163415612',
-        'amount': 5
-      },
-      {
-        'productId': 'GE2',
-        'modelName': 'MO-GE-1612',
-        'serialNo': 'SN-GE-12612361351',
-        'amount': 10
-      },
-      {
-        'productId': 'GE3',
-        'modelName': 'MO-GE-7819',
-        'serialNo': 'SN-GE-72382423723',
-        'amount': 1
-      },
-    ];
+  let distributors = [
+    {
+      'distributorId': 'DI1',
+      'name': 'distributor1'
+    },
+    {
+      'distributorId': 'DI2',
+      'name': 'distributor2'
+    }
+  ];
 
-    const generatorRegistry = await getAssetRegistry(namespace + '.Generators');
-    generators = generators.map(function (generator) {
-      let newGenerator = factory.newResource(namespace, 'Generators', generator.productId);
-      newGenerator.modelName = generator.modelName;
-      newGenerator.serialNo = generator.serialNo;
-      newGenerator.amount = generator.amount;
-      return newGenerator;
-    });
-    await generatorRegistry.addAll(generators);
+  // add the manufacturers
+  const manufacturerRegistry = await getParticipantRegistry(namespace + '.Manufacturer');
+  manufacturers = manufacturers.map(function (manufacturer) {
+    let newManufacturer = factory.newResource(namespace, 'Manufacturer', manufacturer.manufacturerId);
+    newManufacturer.name = manufacturer.name;
+    return newManufacturer;
+  });
+  await manufacturerRegistry.addAll(manufacturers);
+
+  // add the distributors
+  const distributorRegistry = await getParticipantRegistry(namespace + '.Distributor');
+  distributors = distributors.map(function (distributor) {
+    let newDistributor = factory.newResource(namespace, 'Distributor', distributor.distributorId);
+    newDistributor.name = distributor.name;
+    return newDistributor;
+  });
+  await distributorRegistry.addAll(distributors);
+
+  /* add assets */
+  // add the generators
+  let generators = [
+    {
+      'productId': 'GE1',
+      'modelName': 'MO-GE-5215',
+      'serialNo': 'SN-GE-56163415612',
+      'amount': 5,
+      'price': 5000
+    },
+    {
+      'productId': 'GE2',
+      'modelName': 'MO-GE-1612',
+      'serialNo': 'SN-GE-12612361351',
+      'amount': 10,
+      'price': 4500
+    },
+    {
+      'productId': 'GE3',
+      'modelName': 'MO-GE-7819',
+      'serialNo': 'SN-GE-72382423723',
+      'amount': 1,
+      'price': 5500
+    },
+  ];
+
+  const generatorRegistry = await getAssetRegistry(namespace + '.Generators');
+  generators = generators.map(function (generator) {
+    let newGenerator = factory.newResource(namespace, 'Generators', generator.productId);
+    newGenerator.modelName = generator.modelName;
+    newGenerator.serialNo = generator.serialNo;
+    newGenerator.amount = generator.amount;
+    newGenerator.price = generator.price;
+    return newGenerator;
+  });
+  await generatorRegistry.addAll(generators);
 }
 
 /**
@@ -107,20 +111,40 @@ async function InitTestDataFunction(initTestData) {
  * @param {org.legacy.network.ClearData} ClearData - the Clear Data transaction
  * @transaction
  */
-async function ClearDataFunction(ClearData) {    
-  	// deleting participants
-    const manufacturerReg = await getParticipantRegistry(namespace + '.Manufacturer');
-    let manufacturer = await manufacturerReg.getAll();
-    await manufacturerReg.removeAll(manufacturer);
-    
-    const distributorReg = await getParticipantRegistry(namespace + '.Distributor'); 
-    let distributor = await distributorReg.getAll();
-    await distributorReg.removeAll(distributor);
+async function ClearDataFunction(ClearData) {
+  // deleting participants
+  const manufacturerReg = await getParticipantRegistry(namespace + '.Manufacturer');
+  let manufacturer = await manufacturerReg.getAll();
+  await manufacturerReg.removeAll(manufacturer);
+  
+  const distributorReg = await getParticipantRegistry(namespace + '.Distributor'); 
+  let distributor = await distributorReg.getAll();
+  await distributorReg.removeAll(distributor);
 
-    // deleting assets
-    const GeneratorsReg = await getAssetRegistry(namespace + '.Generators'); 
-    let Generators = await GeneratorsReg.getAll();
-    await GeneratorsReg.removeAll(Generators);
+  const vendorReg = await getParticipantRegistry(namespace + '.Vendor');
+  let vendor = await vendorReg.getAll();
+  await vendorReg.removeAll(vendor);
+
+  // deleting assets
+  const generatorsReg = await getAssetRegistry(namespace + '.Generators'); 
+  let generators = await generatorsReg.getAll();
+  await generatorsReg.removeAll(generators);
+
+  const computersReg = await getAssetRegistry(namespace + '.Computers'); 
+  let computers = await computersReg.getAll();
+  await computersReg.removeAll(computers);
+  
+  const airplaneWingsReg = await getAssetRegistry(namespace + '.AirplaneWings'); 
+  let airplaneWings = await airplaneWingsReg.getAll();
+  await airplaneWingsReg.removeAll(airplaneWings);
+  
+  const maritimeRadarSystemsReg = await getAssetRegistry(namespace + '.MaritimeRadarSystems'); 
+  let maritimeRadarSystems = await maritimeRadarSystemsReg.getAll();
+  await maritimeRadarSystemsReg.removeAll(maritimeRadarSystems);
+  
+  const armoredVehiclesReg = await getAssetRegistry(namespace + '.ArmoredVehicles');
+  let armoredVehicles = await armoredVehicles.getAll();
+  await armoredVehiclesReg.removeAll(armoredVehicles);
 }
 
 /**
@@ -129,44 +153,22 @@ async function ClearDataFunction(ClearData) {
  * @transaction
  */
 async function ProcessFunction(param) {
-	let product = param.product;
-    let fromState = param.fromState;
-    let toState = param.toState;
+  let productName = param.productName;
+  let productId = param.productId;
+  let fromState = param.fromState;
+  let toState = param.toState;
+
+  // checking if transfer is valid
   
-  	// checking if transfer is valid
-    
-    if(!PRODUCT_STATES.includes(fromState) || !PRODUCT_STATES.includes(toState)) {
-      new Error('Invalid transfer');
-    }
+  if(!PRODUCT_STATES.includes(fromState) || !PRODUCT_STATES.includes(toState)) {
+    new Error('Invalid transfer');
+  }
 
-  	product.atState = toState;
-  
-  	var generatorsReg;
-    generatorsReg = await getAssetRegistry(namespace + '.Generators')
-    generatorsReg.update(product);
-}
+  let assetReg;
+  assetReg = await getAssetRegistry(namespace + "." + productName);
 
-/**
- * Sample transaction
- * @param {org.legacy.network.SampleTransaction} sampleTransaction
- * @transaction
- */
-async function sampleTransaction(tx) {
-    // Save the old value of the asset.
-    const oldValue = tx.asset.value;
+  let asset = await assetReg.get(productId);
+  asset.atState = toState;
 
-    // Update the asset with the new value.
-    tx.asset.value = tx.newValue;
-
-    // Get the asset registry for the asset.
-    const assetRegistry = await getAssetRegistry('org.legacy.network.SampleAsset');
-    // Update the asset in the asset registry.
-    await assetRegistry.update(tx.asset);
-
-    // Emit an event for the modified asset.
-    let event = getFactory().newEvent('org.legacy.network', 'SampleEvent');
-    event.asset = tx.asset;
-    event.oldValue = oldValue;
-    event.newValue = tx.newValue;
-    emit(event);
+  assetReg.update(asset);
 }

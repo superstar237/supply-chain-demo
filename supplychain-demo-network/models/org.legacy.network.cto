@@ -37,17 +37,12 @@ participant Vendor identified by vendorId {
   o String name
 }
 
-participant SampleParticipant identified by participantId {
-  o String participantId
-  o String firstName
-  o String lastName
-}
-
 abstract asset Product identified by productId {
   o String productId
   o String modelName
   o String serialNo
   o Integer amount
+  o Integer price
   o ProductState atState default="OriginState"
 }
 
@@ -60,13 +55,10 @@ asset Computers extends Product {
 asset AirplaneWings extends Product {
 }
 
-asset MaritimeEquiqments extends Product {
+asset MaritimeRadarSystems extends Product {
 }
 
-asset SampleAsset identified by assetId {
-  o String assetId
-  --> SampleParticipant owner
-  o String value
+asset ArmoredVehicles extends Product {
 }
 
 transaction InitTestData {
@@ -76,18 +68,8 @@ transaction ClearData {
 }
 
 transaction Process {
-  --> Product product
+  o String productName
+  o String productId
   o ProductState fromState
   o ProductState toState
-}
-
-transaction SampleTransaction {
-  --> SampleAsset asset
-  o String newValue
-}
-
-event SampleEvent {
-  --> SampleAsset asset
-  o String oldValue
-  o String newValue
 }
